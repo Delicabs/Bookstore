@@ -23,10 +23,11 @@ public class BookController {
 
     //Shows all books
     @RequestMapping("/booklist")
-    public String bookList(Model model){
-        model.addAttribute("books",repository.findAll());
+    public String bookList(Model model) {
+        model.addAttribute("books", repository.findAll());
         return "booklist";
     }
+
     // RESTful service to get all students
     @RequestMapping(value = "/books")
     public @ResponseBody
@@ -35,9 +36,9 @@ public class BookController {
     }
 
     //RESTful service to get stuent by id
-    @RequestMapping(value = "/book/{id}",method = RequestMethod.GET)
-    public @ResponseBody Optional<Book>
-    findBookRest(@PathVariable("id") Long bookId){
+    @RequestMapping(value = "/book/{id}", method = RequestMethod.GET)
+    public @ResponseBody
+    Optional<Book> findBookRest(@PathVariable("id") Long bookId) {
         return repository.findById(bookId);
     }
 
@@ -51,15 +52,16 @@ public class BookController {
 
     //Add new book
     @RequestMapping(value = "/addbook")
-    public String addBook(Model model){
+    public String addBook(Model model) {
         model.addAttribute("book", new Book());
-        model.addAttribute("categories",grepository.findAll());
+        model.addAttribute("categories", grepository.findAll());
         return "addbook";
     }
+
     // Edit existing book
     @RequestMapping(value = "/edit/{id}")
-    public String editBook (@PathVariable("id") Long bookId,Model model){
-        model.addAttribute("book",repository.findById(bookId));
+    public String editBook(@PathVariable("id") Long bookId, Model model) {
+        model.addAttribute("book", repository.findById(bookId));
         model.addAttribute("categories", grepository.findAll());
         return "edit";
 
@@ -67,13 +69,14 @@ public class BookController {
 
     //Save book
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String save(Book book){
+    public String save(Book book) {
         repository.save(book);
         return "redirect:booklist";
     }
+
     // index-
     @RequestMapping("/index")
-    public String index(){
+    public String index() {
         return "index";
     }
 

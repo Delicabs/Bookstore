@@ -48,6 +48,6 @@ public class Category {
 
     @Override
     public String toString() {
-        return "Category [categoryId=" + categoryId + ", name='" + name +"]";
+        return "Category [categoryId=" + categoryId + ", name='" + name + "]";
     }
 }

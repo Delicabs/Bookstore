@@ -25,13 +25,8 @@ public class BookstoreApplication {
             grepository.save(new Category("Law"));
 
 
-
-          repository.save(new Book("Journey","Cole Matthew","233ks",1990,20.90, grepository.findByName("IT").get(0)));
-          repository.save(new Book("Math","Albert","33ookk", 1990,30.40,grepository.findByName("SCI-FI").get(0)));
-
-
-
-
+            repository.save(new Book("Journey", "Cole Matthew", "233ks", 1990, 20.90, grepository.findByName("IT").get(0)));
+            repository.save(new Book("Math", "Albert", "33ookk", 1990, 30.40, grepository.findByName("SCI-FI").get(0)));
 
 
         };
