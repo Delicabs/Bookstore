@@ -1,5 +1,7 @@
 package com.example.bookstoredelicabs.bookstore.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,6 +16,7 @@ import javax.persistence.*;
 
 
         @ManyToOne
+        @JsonIgnore
         @JoinColumn(name = "categoryId")
         private Category category;
 
@@ -87,8 +90,11 @@ import javax.persistence.*;
             this.price = price;
         }
 
-
-
-
-
+    @Override
+    public String toString() {
+        if(this.category != null)
+        return "Book [id=" + id + ", title=" + title +", author=" + author +", isbn=" + isbn +", year=" + year + ", price=" + price + ", category=" + this.getCategory() + "]";
+        else
+            return "Book [id=" + id + ", title=" + title +", author=" + author +", isbn=" + isbn +", year=" + year + ", price=" + price + "]";
     }
+}

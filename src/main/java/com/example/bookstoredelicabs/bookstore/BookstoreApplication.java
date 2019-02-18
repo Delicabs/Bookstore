@@ -19,6 +19,7 @@ public class BookstoreApplication {
     @Bean
     public CommandLineRunner demo(BookRepository repository, CategoryRepository grepository) {
         return (args) -> {
+
             grepository.save(new Category("IT"));
             grepository.save(new Category("SCI-FI"));
             grepository.save(new Category("Law"));
