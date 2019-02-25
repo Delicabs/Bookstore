@@ -23,14 +23,6 @@ public class BookController {
     private CategoryRepository grepository;
 
 
-
-    @RequestMapping(value = "/login")
-    public String login(){
-       return "login";
-    }
-
-
-
     //Shows all books
     @RequestMapping("/booklist")
     public String bookList(Model model) {
