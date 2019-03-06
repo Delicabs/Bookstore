@@ -4,6 +4,7 @@ import com.example.bookstoredelicabs.bookstore.domain.Book;
 import com.example.bookstoredelicabs.bookstore.domain.BookRepository;
 import com.example.bookstoredelicabs.bookstore.domain.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,21 +12,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
 
 @Controller
 public class BookController {
     @Autowired
+    private HttpSession session;
+    @Autowired
     private BookRepository repository;
     @Autowired
     private CategoryRepository grepository;
+
+
+    @RequestMapping("/login")
+    public String login() {
+        session.setAttribute("Juan","Value");
+        return "login";
+
+    }
 
 
     //Shows all books
     @RequestMapping("/booklist")
     public String bookList(Model model) {
         model.addAttribute("books", repository.findAll());
+        String value = (String) session.getAttribute("Juan");
+        System.out.println(value);
         return "booklist";
     }
 
@@ -45,6 +59,7 @@ public class BookController {
 
 
     //Delete book
+    @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String deleteBook(@PathVariable("id") Long bookId, Model model) {
         repository.deleteById(bookId);
