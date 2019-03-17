@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,7 +25,8 @@ public class BookController {
     private BookRepository repository;
     @Autowired
     private CategoryRepository grepository;
-
+    private List<Book> bookList = new ArrayList<>();
+    private double totalPrice = 0.00;
 
     @RequestMapping("/login")
     public String login() {
@@ -37,9 +39,14 @@ public class BookController {
     //Shows all books
     @RequestMapping("/booklist")
     public String bookList(Model model) {
+        totalPrice = 0.00;
+        for (int i = 0; i < bookList.size(); i++){
+            totalPrice += bookList.get(i).getPrice();
+        }
         model.addAttribute("books", repository.findAll());
         String value = (String) session.getAttribute("Juan");
         System.out.println(value);
+        System.out.println(totalPrice);
         return "booklist";
     }
 

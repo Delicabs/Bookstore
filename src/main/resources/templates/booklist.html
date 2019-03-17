@@ -1,5 +1,10 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<!--/* Workaround for bug https://youtrack.jetbrains.com/issue/IDEA-132738 -->
+    <!--@thymesVar id="post" type="your.package.Post"-->
+    <!--@thymesVar id="title" type="String"-->
+    <!--@thymesVar id="content" type="String"-->
+<!--*/-->
 <head>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
     <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}"/>

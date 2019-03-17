@@ -9,6 +9,8 @@
 
 <div class="container">
     <h1>Edit book</h1>
+
+    <!--/*@thymesVar id="book" type="templates"*/-->
     <form th:object="${book}" th:action="@{../save}" action="#" method="post">
         <div class="form-group">
             <input type="hidden" th:field="*{id}" class="form-control"/>
